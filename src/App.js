@@ -5,16 +5,25 @@ import MyCart from "./Components/Cart/MyCart";
 import OffersList from "./Components/OffersList/OffersList";
 import ShopNowCardList from "./Components/ShopNow/ShopNowCardList";
 import CategoryList from "./Components/Categories/CategoryList";
+import Converted from "./Components/Products/converted";
+import ProductList from "./Components/Products/ProductList";
+import NavbarMain from "./Components/Navbar/NavbarMain";
 class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <NavbarMain />
+        <ProductList />
+        <Footer />
+        {/*<Header />
         <MyCart />
-        {/*<ShopNowCardList />*/}
+
+        <ShopNowCardList />
         <CategoryList />
         <OffersList />
-        <Footer />
+       
+        
+        */}
       </div>
     );
   }

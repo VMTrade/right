@@ -1,5 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 export default function Footer() {
+  const contact = "1800-234-567";
+  const infoMail = "info@gambosupermarket.com";
+  const locationList = [];
   return (
     <div className="footer">
       <div className="footer-first-row">
@@ -9,13 +14,14 @@ export default function Footer() {
               <ul className="call-email-alt">
                 <li>
                   <a className="callemail">
-                    <i className="uil uil-dialpad-alt"></i>1800-000-000
+                    <i className="uil uil-dialpad-alt"></i>
+                    {contact}
                   </a>
                 </li>
                 <li>
                   <a className="callemail">
                     <i className="uil uil-envelope-alt"></i>
-                    info@gambosupermarket.com
+                    {infoMail}
                   </a>
                 </li>
               </ul>
@@ -134,30 +140,11 @@ export default function Footer() {
               <div className="second-row-item">
                 <h4>Top Cities</h4>
                 <ul>
-                  <li>
-                    <a>Gurugram</a>
-                  </li>
-                  <li>
-                    <a>New Delhi</a>
-                  </li>
-                  <li>
-                    <a>Bangaluru</a>
-                  </li>
-                  <li>
-                    <a>Mumbai</a>
-                  </li>
-                  <li>
-                    <a>Hyderabad</a>
-                  </li>
-                  <li>
-                    <a>Kolkata</a>
-                  </li>
-                  <li>
-                    <a>Ludhiana</a>
-                  </li>
-                  <li>
-                    <a>Chandigrah</a>
-                  </li>
+                  {locationList.map((location) => (
+                    <li>
+                      <Link to="/home/location">{location}</Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

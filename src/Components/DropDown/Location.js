@@ -35,7 +35,7 @@ function Location(props) {
             className="myLoc"
             onSelect={updateLocation}
           >
-            <Link to={"/" + Location}> {Location} </Link>
+            <Link to={"/home/" + Location}> {Location} </Link>
           </Dropdown.Item>
         ))}
       </DropdownButton>

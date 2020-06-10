@@ -1,5 +1,5 @@
 import React from "react";
-
+import Location from "../DropDown/Location";
 export default function TopNavbar(props) {
   return (
     <div className="top-header-group">
@@ -17,49 +17,7 @@ export default function TopNavbar(props) {
             <img className="logo-inverse" src="images/dark-logo.svg" alt="" />
           </a>
         </div>
-        <div className="select_location">
-          <div className="ui inline dropdown loc-title">
-            <div className="text">
-              <i className="uil uil-location-point"></i>
-              Gurugram
-            </div>
-            <i className="uil uil-angle-down icon__14"></i>
-            <div className="menu dropdown_loc">
-              <div className="item channel_item">
-                <i className="uil uil-location-point"></i>
-                Gurugram
-              </div>
-              <div className="item channel_item">
-                <i className="uil uil-location-point"></i>
-                New Delhi
-              </div>
-              <div className="item channel_item">
-                <i className="uil uil-location-point"></i>
-                Bangaluru
-              </div>
-              <div className="item channel_item">
-                <i className="uil uil-location-point"></i>
-                Mumbai
-              </div>
-              <div className="item channel_item">
-                <i className="uil uil-location-point"></i>
-                Hyderabad
-              </div>
-              <div className="item channel_item">
-                <i className="uil uil-location-point"></i>
-                Kolkata
-              </div>
-              <div className="item channel_item">
-                <i className="uil uil-location-point"></i>
-                Ludhiana
-              </div>
-              <div className="item channel_item">
-                <i className="uil uil-location-point"></i>
-                Chandigrah
-              </div>
-            </div>
-          </div>
-        </div>
+        <Location />
         <div className="search120">
           <div className="ui search">
             <div className="ui left icon input swdh10">

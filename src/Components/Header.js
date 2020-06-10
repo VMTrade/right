@@ -1,59 +1,20 @@
 import React from "react";
+import Location from "./DropDown/Location";
+import { Link } from "react-router-dom";
+
 export default function Header() {
   return (
     <div className="header clearfix">
       <div className="top-header-group">
         <div className="top-header">
           <div className="main_logo" id="logo">
-            <a>
+            <Link to="/">
               <img src="images/logo.svg" alt="" />
-            </a>
-            <a>
               <img className="logo-inverse" src="images/dark-logo.svg" alt="" />
-            </a>
+            </Link>
           </div>
           <div className="select_location">
-            <div className="ui inline dropdown loc-title">
-              <div className="text">
-                <i className="uil uil-location-point"></i>
-                Gurugram
-              </div>
-              <i className="uil uil-angle-down icon__14"></i>
-              <div className="menu dropdown_loc">
-                <div className="item channel_item">
-                  <i className="uil uil-location-point"></i>
-                  Gurugram
-                </div>
-                <div className="item channel_item">
-                  <i className="uil uil-location-point"></i>
-                  New Delhi
-                </div>
-                <div className="item channel_item">
-                  <i className="uil uil-location-point"></i>
-                  Bangaluru
-                </div>
-                <div className="item channel_item">
-                  <i className="uil uil-location-point"></i>
-                  Mumbai
-                </div>
-                <div className="item channel_item">
-                  <i className="uil uil-location-point"></i>
-                  Hyderabad
-                </div>
-                <div className="item channel_item">
-                  <i className="uil uil-location-point"></i>
-                  Kolkata
-                </div>
-                <div className="item channel_item">
-                  <i className="uil uil-location-point"></i>
-                  Ludhiana
-                </div>
-                <div className="item channel_item">
-                  <i className="uil uil-location-point"></i>
-                  Chandigrah
-                </div>
-              </div>
-            </div>
+            <Location />
           </div>
 
           <div className="header_right">
@@ -63,11 +24,7 @@ export default function Header() {
                   <i className="uil uil-phone-alt"></i>1800-000-000
                 </a>
               </li>
-              <li>
-                <a href="offers.html" className="offer-link">
-                  <i className="uil uil-gift"></i>Offers
-                </a>
-              </li>
+
               <li>
                 <a href="faq.html" className="offer-link">
                   <i className="uil uil-question-circle"></i>Help

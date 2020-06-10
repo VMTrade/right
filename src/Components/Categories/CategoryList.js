@@ -5,10 +5,12 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import CategoryItem from "./CategoryItem";
 
 export default function CategoryList() {
-  const [options, setOptions] = useState({
+  const options = {
     loop: true,
     margin: 20,
     nav: true,
+    dots: false,
+    autoplay: true,
     responsive: {
       0: {
         items: 2,
@@ -20,7 +22,7 @@ export default function CategoryList() {
         items: 6,
       },
     },
-  });
+  };
   const [data, setData] = useState([
     {
       categoryId: 1,

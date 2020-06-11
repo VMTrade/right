@@ -1,11 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useState } from "react";
+
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Location(props) {
-  const [displayMenu, setdisplayMenu] = useState(false);
   const Locations = [
     "Hyderabad",
     "Gurugram",
@@ -14,10 +13,6 @@ function Location(props) {
     "Chennai",
   ];
   const curLocation = props.curLocation;
-
-  const toggleMenu = () => {
-    setdisplayMenu(!displayMenu);
-  };
   const updateLocation = (loc) => {
     props.changeLocation(loc);
     console.log("location changed");
@@ -33,8 +28,10 @@ function Location(props) {
           <Dropdown.Item
             eventKey={Location}
             className="myLoc"
+            style={{ alignContent: "left" }}
             onSelect={updateLocation}
           >
+            <i className="uil uil-location-point"></i>
             <Link to={"/home/" + Location}> {Location} </Link>
           </Dropdown.Item>
         ))}

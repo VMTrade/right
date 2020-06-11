@@ -1,10 +1,11 @@
 import React from "react";
-import Header from "./Header";
-import OfferList from "./OffersList/OffersList";
-import Footer from "./Footer";
-import ShopNowCardList from "./ShopNow/ShopNowCardList";
-import CategoryList from "./Categories/CategoryList";
 import { connect } from "react-redux";
+
+import Header from "../Components/Header";
+import OfferList from "../Components/OffersList/OffersList";
+import Footer from "../Components/Footer";
+import ShopNowCardList from "../Components/ShopNow/ShopNowCardList";
+import CategoryList from "../Components/Categories/CategoryList";
 
 function Home(props) {
   return (

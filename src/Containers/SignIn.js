@@ -18,7 +18,7 @@ export default connect()(function SignIn(props) {
     setLoginData({ ...loginData, [name]: value });
   };
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       console.log(loginData);
@@ -88,7 +88,7 @@ export default connect()(function SignIn(props) {
                 </div>
                 <div className="form-dt">
                   <div className="form-inpts checout-address-step">
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={handleSubmit}>
                       <div className="form-title">
                         <h6>Sign In</h6>
                       </div>

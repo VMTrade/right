@@ -1,0 +1,9 @@
+.channel_item:hover {
+  color: #2b2f4c !important;
+  background: #ffecec !important;
+}
+
+.channel_item1 {
+  color: #2b2f4c !important;
+  background: none !important;
+}

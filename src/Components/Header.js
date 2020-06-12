@@ -20,6 +20,7 @@ export default function Header() {
           <div className="select_location">
             <Location />
           </div>
+          <div className="select_location"></div>
 
           <div className="header_right">
             <ul>
@@ -29,15 +30,15 @@ export default function Header() {
               </li>
 
               <li>
-                <Link to="faq" className="offer-link">
+                <Link to="/dashboard/faq" className="offer-link">
                   <i className="uil uil-question-circle"></i>Help
                 </Link>
               </li>
               <li>
-                <a className="option_links  pull-bs-canvas-left" title="Cart">
+                <Link to="/dashboard/cart" className="option_links">
                   <i className="uil uil-shopping-cart-alt icon_wishlist"></i>
                   <span className="noti_count1">{cartCount}</span>
-                </a>
+                </Link>
               </li>
               <li className="ui dropdown">
                 <Menu />

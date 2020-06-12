@@ -32,7 +32,7 @@ function Location(props) {
             onSelect={updateLocation}
           >
             <i className="uil uil-location-point"></i>
-            <Link to={"/home/" + Location}> {Location} </Link>
+            <Link to={"/" + Location}> {Location} </Link>
           </Dropdown.Item>
         ))}
       </DropdownButton>

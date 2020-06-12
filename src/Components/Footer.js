@@ -2,6 +2,68 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const data = [
+    {
+      categoryId: 1,
+      isAvailable: true,
+      categoryName: "Vegetables & Fruits",
+      categoryImage: "images/category/icon-1.svg",
+    },
+    {
+      categoryId: 2,
+      isAvailable: false,
+      categoryName: "Grocery & Staples",
+      categoryImage: "images/category/icon-2.svg",
+    },
+    {
+      categoryId: 3,
+      isAvailable: false,
+      categoryName: "Dairy & Eggs",
+      categoryImage: "images/category/icon-3.svg",
+    },
+    {
+      categoryId: 4,
+      isAvailable: false,
+      categoryName: "Beverages",
+      categoryImage: "images/category/icon-4.svg",
+    },
+    {
+      categoryId: 5,
+      isAvailable: false,
+      categoryName: "Snacks",
+      categoryImage: "images/category/icon-5.svg",
+    },
+    {
+      categoryId: 6,
+      isAvailable: false,
+      categoryName: "Home Care",
+      categoryImage: "images/category/icon-6.svg",
+    },
+    {
+      categoryId: 7,
+      isAvailable: true,
+      categoryName: "Personal Care",
+      categoryImage: "images/category/icon-8.svg",
+    },
+    {
+      categoryId: 6,
+      isAvailable: false,
+      categoryName: "Pet Care",
+      categoryImage: "images/category/icon-9.svg",
+    },
+    {
+      categoryId: 6,
+      isAvailable: true,
+      categoryName: "Meat & Seafood",
+      categoryImage: "images/category/icon-10.svg",
+    },
+    {
+      categoryId: 6,
+      isAvailable: false,
+      categoryName: "Electronics",
+      categoryImage: "images/category/icon-11.svg",
+    },
+  ];
   const contact = "1800-234-567";
   const infoMail = "info@gambosupermarket.com";
   const locationList = [];
@@ -72,39 +134,11 @@ export default function Footer() {
               <div className="second-row-item">
                 <h4>Categories</h4>
                 <ul>
-                  <li>
-                    <a>Fruits and Vegetables</a>
-                  </li>
-                  <li>
-                    <a>Grocery & Staples</a>
-                  </li>
-                  <li>
-                    <a>Dairy & Eggs</a>
-                  </li>
-                  <li>
-                    <a>Beverages</a>
-                  </li>
-                  <li>
-                    <a>Snacks</a>
-                  </li>
-                  <li>
-                    <a>Home Care</a>
-                  </li>
-                  <li>
-                    <a>Noodles & Sauces</a>
-                  </li>
-                  <li>
-                    <a>Personal Care</a>
-                  </li>
-                  <li>
-                    <a>Pet Care</a>
-                  </li>
-                  <li>
-                    <a>Meat & Seafood</a>
-                  </li>
-                  <li>
-                    <a>Electronics</a>
-                  </li>
+                  {data.map((d) => (
+                    <li>
+                      <Link>{d.categoryName}</Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -258,10 +292,6 @@ export default function Footer() {
                     </a>
                   </li>
                 </ul>
-              </div>
-              <div className="copyright-text">
-                <i className="uil uil-copyright"></i>Copyright 2020{" "}
-                <b>Gambolthemes</b> . All rights reserved
               </div>
             </div>
           </div>

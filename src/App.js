@@ -16,14 +16,13 @@ class App extends Component {
       <Provider store={Store}>
         <div>
           <Switch>
-            <Route exact path="/home" component={Home} />
-            <Route path="/home/:location" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/products" component={ProductList} />
             <Route path="/login" component={SignIn} />
             <Route path="/register" component={SignUp} />
-            <Route path="/Dashboard" component={Dashboard} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/:location" component={Home} />
           </Switch>
-          <MyCart />
         </div>
       </Provider>
     );

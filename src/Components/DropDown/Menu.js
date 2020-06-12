@@ -23,7 +23,7 @@ export default function Menu() {
     {
       item: "Faq",
       icon: "uil uil-info-circle icon__1",
-      link: "/faq",
+      link: "/dashboard/faq",
     },
     {
       item: "Logout",

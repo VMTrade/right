@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../Assets/logo.svg";
 
 import Location from "./DropDown/Location";
 import Menu from "./DropDown/Menu";
@@ -13,8 +14,12 @@ export default function Header() {
         <div className="top-header">
           <div className="main_logo" id="logo">
             <Link to="/">
-              <img src="images/logo.svg" alt="" />
-              <img className="logo-inverse" src="images/dark-logo.svg" alt="" />
+              <img src={logo} alt="Right Delivers" />
+              <img
+                className="logo-inverse"
+                src="../Assets/images/dark-logo.svg"
+                alt=""
+              />
             </Link>
           </div>
           <div className="select_location">

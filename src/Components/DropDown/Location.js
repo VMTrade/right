@@ -41,7 +41,7 @@ function Location(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    curLocation: state,
+    curLocation: state.curLocation,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 
 import Store from "./Store/configStore";
-import MyCart from "./Components/Cart/MyCart";
 import SignIn from "./Containers/SignIn";
 import SignUp from "./Containers/SignUp";
 import Home from "./Containers/Home";
@@ -21,7 +20,8 @@ class App extends Component {
             <Route path="/login" component={SignIn} />
             <Route path="/register" component={SignUp} />
             <Route path="/dashboard" component={Dashboard} />
-            <Route path="/:location" component={Home} />
+            <Route exact path="/:location" component={Home} />
+            <Route path="/:location/:id" render={ProductList} />
           </Switch>
         </div>
       </Provider>

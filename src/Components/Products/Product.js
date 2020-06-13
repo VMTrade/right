@@ -1,15 +1,11 @@
 import React from "react";
-
+import image from "./img-14.jpg";
 export default function Product(props) {
   return (
     <div className="col-lg-3 col-md-6">
       <div className="product-item mb-30">
         <a href="single_product_view.html" className="product-img">
-          <img src="images/product/img-5.jpg" alt="" />
-          <div className="product-absolute-options">
-            <span className="offer-badge-1">2% off</span>
-            <span className="like-icon" title="wishlist"></span>
-          </div>
+          <img src={image} alt="" />
         </a>
         <div className="product-text-dt">
           <p>
@@ -17,7 +13,7 @@ export default function Product(props) {
           </p>
           <h4>Product Title Here</h4>
           <div className="product-price">
-            $9 <span>$10</span>
+            {props.data.aprice} <span>{props.data.sprice}</span>
           </div>
           <div className="qty-cart">
             <div className="quantity buttons_added">

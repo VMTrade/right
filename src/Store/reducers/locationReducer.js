@@ -1,7 +1,12 @@
-const locationReducer = function (state = "", action) {
+const locationReducer = function (
+  state = { curLocation: "", notification: "" },
+  action
+) {
   switch (action.type) {
     case "SETLOCATION":
-      return action.payload;
+      return { ...state, curLocation: action.payload };
+    case "SETNOTIFICATION":
+      return { ...state, notification: action.payload };
     default:
       return state;
   }

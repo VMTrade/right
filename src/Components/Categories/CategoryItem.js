@@ -1,10 +1,32 @@
-import React from "react";
-import { Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function CategoryItem(props) {
+import { Image } from "react-bootstrap";
+import "./ribbon.css";
+
+function CategoryItem(props) {
+  const curLocation = props.curLocation;
+  const [error, setError] = useState("");
+  const handleError = () => {
+    if (curLocation) {
+      setError("");
+    } else {
+      setError("Choose your location first");
+    }
+    props.setNotification(error);
+  };
   return (
     <div className="col col-xs-12 col-sm-6 col-md-3 item">
-      <a className="category-item m-3 pt-5">
+      <Link
+        to={
+          curLocation && props.category.isAvailable
+            ? "/" + curLocation + "/" + props.category.categoryId
+            : "/"
+        }
+        onClick={handleError}
+        className="category-item m-3 pt-5"
+      >
         <div className="cate-img">
           <Image
             width="140"
@@ -15,23 +37,24 @@ export default function CategoryItem(props) {
           />
         </div>
         <h4> {props.category.categoryName} </h4>
-      </a>
-      {props.category.isAvailable && (
-        <div
-          className="offer-top-text-banner"
-          style={{
-            top: "30px",
-            left: "30px",
-            background: "red",
-            width: "auto",
-            padding: "10px",
-            borderTopRightRadius: "50px",
-            borderBottomRightRadius: "50px",
-          }}
-        >
-          <div style={{ color: "white", fontSize: "11px" }}>Coming Soon</div>
+      </Link>
+      {!props.category.isAvailable && (
+        <div class="ribbon ribbon-top-left">
+          <span>coming soon</span>
         </div>
       )}
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    curLocation: state.curLocation,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setNotification: (notification) =>
+      dispatch({ type: "SETNOTIFICATION", payload: notification }),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);

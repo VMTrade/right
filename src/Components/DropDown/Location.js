@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import * as actionCreators from "../../Store/actions/index";
+
 function Location(props) {
   const Locations = [
     "Hyderabad",
@@ -41,12 +43,12 @@ function Location(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    curLocation: state.curLocation,
+    curLocation: state.config.curLocation,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeLocation: (loc) => dispatch({ type: "SETLOCATION", payload: loc }),
+    changeLocation: (loc) => dispatch(actionCreators.setLocation(loc)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Location);

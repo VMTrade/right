@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Navbar } from "react-bootstrap";
+
 import logo from "../Assets/logo.svg";
 
 import Location from "./DropDown/Location";
 import Menu from "./DropDown/Menu";
 
-export default function Header() {
+function Header(props) {
   const contactInfo = "1800-000-000";
-  const cartCount = 4;
+  const cartCount = props.cartCount;
   return (
-    <div className="header clearfix">
+    <div sticky="top" className="header clearfix">
       <div className="top-header-group">
         <div className="top-header">
           <div className="main_logo" id="logo">
@@ -55,3 +58,9 @@ export default function Header() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    cartCount: state.cart.cartItems.length,
+  };
+};
+export default connect(mapStateToProps)(Header);

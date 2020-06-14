@@ -48,7 +48,7 @@ function CategoryItem(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    curLocation: state.curLocation,
+    curLocation: state.config.curLocation,
   };
 };
 const mapDispatchToProps = (dispatch) => {

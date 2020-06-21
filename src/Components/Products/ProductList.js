@@ -1,58 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Product from "./Product";
-import Header from "../Header";
+import Header from "../Header/Header";
 
-export default withRouter(function ProductList(props) {
-  const items = [
-    {
-      pid: "1",
-      catid: "3",
-      name: "product 1",
-      img: "",
-      aprice: 450,
-      sprice: 620,
-      status: "outofstock",
-    },
-    {
-      pid: "2",
-      catid: "3",
-      name: "product 2",
-      img: "",
-      aprice: 100,
-      sprice: 150,
-      status: "available",
-    },
-    {
-      pid: "3",
-      catid: "3",
-      name: "product 3",
-      img: "",
-      aprice: 100,
-      sprice: 200,
-      status: "available",
-    },
-
-    {
-      pid: "4",
-      catid: "3",
-      name: "product 4",
-      img: "",
-      aprice: 150,
-      sprice: 320,
-      status: "available",
-    },
-    {
-      pid: "5",
-      catid: "3",
-      name: "product 5",
-      img: "",
-      aprice: 300,
-      sprice: 520,
-      status: "available",
-    },
-  ];
+function ProductList(props) {
+  const items = props.product.items;
+  const loadMore = () => {};
   return (
     <>
       <Header />
@@ -76,7 +31,7 @@ export default withRouter(function ProductList(props) {
                     <div className="more-product-btn">
                       <button
                         className="show-more-btn hover-btn"
-                        onclick="window.location.href = '#';"
+                        onClick={loadMore}
                       >
                         Show More
                       </button>
@@ -90,4 +45,11 @@ export default withRouter(function ProductList(props) {
       </div>
     </>
   );
-});
+}
+const mapStateToProps = (state) => {
+  return {
+    product: state.product,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(ProductList));

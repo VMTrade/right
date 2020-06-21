@@ -1,5 +1,6 @@
 import React from "react";
 import "./Menu.css";
+import Avatar from "./img-5.jpg";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export default function Menu() {
@@ -34,7 +35,7 @@ export default function Menu() {
   return (
     <div>
       <a className="opts_account">
-        <img src="images/avatar/img-5.jpg" alt="" />
+        <img src={Avatar} alt="" />
         <DropdownButton className="btn" title={"Hi " + currentUser + " "}>
           {data.map((dataItem) => (
             <Dropdown.Item eventKey={dataItem.item} className="channel_item1">

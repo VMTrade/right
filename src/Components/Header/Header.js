@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Navbar } from "react-bootstrap";
 
-import logo from "../Assets/logo.svg";
-
-import Location from "./DropDown/Location";
-import Menu from "./DropDown/Menu";
+import logo from "../../Assets/logo.svg";
+import Location from "../DropDown/Location";
+import Menu from "../DropDown/Menu";
 
 function Header(props) {
   const contactInfo = "1800-000-000";
@@ -28,8 +27,6 @@ function Header(props) {
           <div className="select_location">
             <Location />
           </div>
-          <div className="select_location"></div>
-
           <div className="header_right">
             <ul>
               <li>
@@ -42,6 +39,7 @@ function Header(props) {
                   <i className="uil uil-question-circle"></i>Help
                 </Link>
               </li>
+
               <li>
                 <Link to="/dashboard/cart" className="option_links">
                   <i className="uil uil-shopping-cart-alt icon_wishlist"></i>

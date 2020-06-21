@@ -1,4 +1,5 @@
 import * as actionTypes from "./actionTypes";
+import axios from "axios";
 
 export const setLocation = (payload) => {
   return {
@@ -11,5 +12,19 @@ export const setNotification = (payload) => {
   return {
     type: actionTypes.SET_NOTIFICATION,
     payload: payload,
+  };
+};
+
+export function loadData() {
+  return function (dispatch) {
+    return axios.get("http://localhost:8000/").then(({ data }) => {
+      dispatch(setData(data));
+    });
+  };
+}
+export const setData = (data) => {
+  return {
+    type: actionTypes.LOAD_DATA,
+    payload: data,
   };
 };

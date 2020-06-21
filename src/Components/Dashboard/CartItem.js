@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import prodImg from "../Products/img-14.jpg";
 import * as actionCreators from "../../Store/actions/index";
 
 function CartItem(props) {
@@ -28,7 +28,7 @@ function CartItem(props) {
     <div>
       <div className="cart-item">
         <div className="cart-product-img">
-          <img src="images/product/img-1.jpg" alt="image" />
+          <img src={prodImg} alt="image" />
           {/*<div className="offer-badge">6% OFF</div>*/}
         </div>
         <div className="cart-text">

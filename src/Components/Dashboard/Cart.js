@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import * as actionCreators from "../../Store/actions/index";
 
@@ -8,7 +8,7 @@ function Cart(props) {
   const dummyPrice = {
     totalPrice: 0,
     subTotal: 0,
-    deliveryCharge: 40,
+    deliveryCharge: 0,
     savings: "",
   };
   const [price, setPrice] = useState(dummyPrice);
@@ -18,17 +18,26 @@ function Cart(props) {
     props.state.cartItems.map((item) => {
       amountA += item.aprice * item.quantity;
       amountS += item.sprice * item.quantity;
+      return amountA;
     });
+    let delivery = 40;
+    if (amountA > 500 || amountA === 0) {
+      delivery = 0;
+    }
     setPrice({
       ...price,
       subTotal: amountA,
-      savings: amountS,
-      totalPrice: amountA + price.deliveryCharge,
+      savings: amountS - amountA,
+      totalPrice: amountA + delivery,
+      deliveryCharge: delivery,
     });
     return () => {
       setPrice(dummyPrice);
     };
-  }, [props.state.cartItems]);
+  }, [
+    props.state.cartItems,
+    ...props.state.cartItems.map((item) => item.quantity),
+  ]);
 
   return (
     <div>
@@ -65,12 +74,12 @@ function Cart(props) {
           <span>₹{price.totalPrice}</span>
         </div>
         <div className="checkout-cart">
-          <a href="#" className="promo-code">
+          <Link to="/" className="promo-code">
             Have a promocode?
-          </a>
-          <a href="#" className="cart-checkout-btn hover-btn">
+          </Link>
+          <Link to="/checkout" className="cart-checkout-btn hover-btn">
             Proceed to Checkout
-          </a>
+          </Link>
         </div>
       </div>
     </div>

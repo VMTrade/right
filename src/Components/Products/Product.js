@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
+import { Image } from "react-bootstrap";
 
 import image from "./img-14.jpg";
 import * as actionCreators from "../../Store/actions/index";
 import "./product.css";
 
 function Product(props) {
+  const product = { ...props.data };
+  const [added, setAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const increment = () => {
     setQuantity(quantity + 1);
   };
   const decrement = () => {
-    setQuantity(quantity - 1);
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
+  };
+  const sendProduct = () => {
+    props.setCurProduct(product);
   };
   const handleCart = () => {
-    console.log(props.data.pid + " " + quantity);
+    setAdded(true);
     const payload = {
       ...props.data,
       quantity: quantity,
@@ -24,9 +33,14 @@ function Product(props) {
   return (
     <div className="col-lg-3 col-md-6">
       <div className="productitem mb-30 ">
-        <a href="single_product_view.html" className="product-img">
-          <img src={image} alt="" />
-        </a>
+        <Link
+          to={{
+            pathname: props.match.url + "/" + props.data.pid,
+          }}
+          onClick={sendProduct}
+        >
+          <Image src={image} className="p-image" fluid />
+        </Link>
         <div className="product-text-dt">
           <p>
             {props.data.status === "available" ? "In Stock" : "Out of Stock"}
@@ -58,12 +72,15 @@ function Product(props) {
               />
             </div>
           </div>
-          <button className="cart-btn" onClick={handleCart}>
-            <span className="cart-icon">
-              <i className="uil uil-shopping-cart-alt"></i>
-            </span>
-            Add to cart
-          </button>
+          {!added ? (
+            <button className="add-cart-btn hover-btn" onClick={handleCart}>
+              <i className="uil uil-shopping-cart-alt"></i>Add to Cart
+            </button>
+          ) : (
+            <button className="added-cart-btn">
+              <i className="uil uil-shopping-cart-alt"></i>Added
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -72,6 +89,7 @@ function Product(props) {
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (payload) => dispatch(actionCreators.addToCart(payload)),
+    setCurProduct: (payload) => dispatch(actionCreators.setCurProduct(payload)),
   };
 };
-export default connect(null, mapDispatchToProps)(Product);
+export default withRouter(connect(null, mapDispatchToProps)(Product));

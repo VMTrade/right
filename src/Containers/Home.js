@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
-import Header from "../Components/Header";
+import * as actionCreators from "../Store/actions/index";
+import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer";
 import CategoryList from "../Components/Categories/CategoryList";
 import Spinner from "../Components/Common/Spinner";
 
 function Home(props) {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setInterval(() => setLoading(false), 1000);
-  });
+  const [loading, setLoading] = useState(false);
+  const data = props.config.loadedData;
+  useEffect(() => {}, []);
+
   const homeView = (
     <>
       <Header />
@@ -27,7 +28,12 @@ function Home(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    state,
+    config: state.config,
   };
 };
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadData: () => dispatch(actionCreators.loadData()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

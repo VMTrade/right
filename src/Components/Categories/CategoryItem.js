@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -6,8 +6,13 @@ import { Image } from "react-bootstrap";
 import "./ribbon.css";
 
 function CategoryItem(props) {
-  const curLocation = props.curLocation;
+  const curLocation = props.config.curLocation;
   const [error, setError] = useState("");
+  const [isAvailable, setIsAvailable] = useState(false);
+  useEffect(() => {
+    setIsAvailable(props.config.curBranch.services.includes(props.category.id));
+  }, [curLocation]);
+
   const handleError = () => {
     if (curLocation) {
       setError("");
@@ -20,8 +25,8 @@ function CategoryItem(props) {
     <div className="col col-xs-12 col-sm-6 col-md-3 item">
       <Link
         to={
-          curLocation && props.category.isAvailable
-            ? "/" + curLocation + "/" + props.category.categoryId
+          curLocation && isAvailable
+            ? "/" + curLocation + "/" + props.category.id
             : "/"
         }
         onClick={handleError}
@@ -29,18 +34,17 @@ function CategoryItem(props) {
       >
         <div className="cate-img">
           <Image
-            width="140"
             fluid
             className="mx-auto d-block"
-            src={props.category.categoryImage}
+            src={props.category.image}
             alt=""
           />
         </div>
-        <h4> {props.category.categoryName} </h4>
+        <h4> {props.category.name} </h4>
       </Link>
-      {!props.category.isAvailable && (
+      {!isAvailable && (
         <div class="ribbon ribbon-top-left">
-          <span>coming soon</span>
+          <span>{!curLocation ? "Select location" : "coming soon"}</span>
         </div>
       )}
     </div>
@@ -48,7 +52,7 @@ function CategoryItem(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    curLocation: state.config.curLocation,
+    config: state.config,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
-
+import DashHead from "./DashHead";
 import SideBar from "./SideBar";
 import Profile from "./Profile";
 import Orders from "./Orders";
@@ -11,6 +11,7 @@ import Faq from "./Faq";
 export default withRouter(function DashHome(props) {
   return (
     <div>
+      <DashHead />
       <div class="">
         <div class="container">
           <div class="row">

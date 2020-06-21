@@ -4,4 +4,5 @@ export {
   deleteCartItem,
   getDerivedPrice,
 } from "./cart";
-export { setLocation, setNotification } from "./config";
+export { setLocation, setNotification, loadData } from "./config";
+export { loadProducts, setCurProduct } from "./product";

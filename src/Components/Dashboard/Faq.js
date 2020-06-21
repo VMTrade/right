@@ -1,4 +1,5 @@
 import React from "react";
+import { Accordion, Card } from "react-bootstrap";
 
 export default function Faq(props) {
   const dummyDesc = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam semper faucibus erat a efficitur. Praesent vulputate
@@ -42,44 +43,30 @@ export default function Faq(props) {
     },
   ];
   return (
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <div class="default-title mt-4">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-12 col-md-12">
+          <div className="default-title mt-4">
             <h2>Frequently Asked Questions</h2>
             <img src="images/line.svg" alt="" />
           </div>
-          <div class="panel-group accordion pt-1" id="accordion0">
+          <Accordion
+            className="panel-group accordion pt-1"
+            defaultActiveKey="0"
+          >
             {faqData.map((data) => (
-              <div class="panel panel-default">
-                <div class="panel-heading" id={"heading" + data.id}>
-                  <div class="panel-title">
-                    <a
-                      class="collapsed"
-                      data-toggle="collapse"
-                      data-target={"#collapse" + data.id}
-                      href="#"
-                      aria-expanded="false"
-                      aria-controls={"collapse" + data.id}
-                    >
-                      {data.heading}
-                    </a>
-                  </div>
-                </div>
-                <div
-                  id={"collapse" + data.id}
-                  class="panel-collapse collapse"
-                  role="tabpanel"
-                  aria-labelledby={"heading" + data.id}
-                  data-parent="#accordion0"
-                >
-                  <div class="panel-body">
+              <div className="">
+                <Accordion.Toggle as={Card.Header} eventKey={data.id}>
+                  {data.heading}
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey={data.id}>
+                  <div className="panel-body">
                     <p>{data.desc}</p>
                   </div>
-                </div>
+                </Accordion.Collapse>
               </div>
             ))}
-          </div>
+          </Accordion>
         </div>
       </div>
     </div>

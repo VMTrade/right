@@ -7,17 +7,11 @@ import { Link } from "react-router-dom";
 import * as actionCreators from "../../Store/actions/index";
 
 function Location(props) {
-  const Locations = [
-    "Hyderabad",
-    "Gurugram",
-    "New Delhi",
-    "Banglore",
-    "Chennai",
-  ];
+  const branches = props.branches;
   const curLocation = props.curLocation;
   const updateLocation = (loc) => {
-    props.changeLocation(loc);
-    console.log("location changed");
+    const payload = branches.find((branch) => branch.name === loc);
+    props.changeLocation(payload);
   };
   return (
     <div>
@@ -26,15 +20,15 @@ function Location(props) {
         className="btn"
         title={curLocation ? curLocation : "Pick Your Location"}
       >
-        {Locations.map((Location) => (
+        {branches.map((branch) => (
           <Dropdown.Item
-            eventKey={Location}
+            eventKey={branch.name}
             className="myLoc"
             style={{ alignContent: "left" }}
             onSelect={updateLocation}
           >
             <i className="uil uil-location-point"></i>
-            <Link to={"/" + Location}> {Location} </Link>
+            <Link to={branch.route}> {branch.name} </Link>
           </Dropdown.Item>
         ))}
       </DropdownButton>
@@ -44,11 +38,12 @@ function Location(props) {
 const mapStateToProps = (state) => {
   return {
     curLocation: state.config.curLocation,
+    branches: state.config.branches,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeLocation: (loc) => dispatch(actionCreators.setLocation(loc)),
+    changeLocation: (payload) => dispatch(actionCreators.setLocation(payload)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Location);

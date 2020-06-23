@@ -1,0 +1,9 @@
+.my-login-btn {
+  height: 30px;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  color: #fff;
+  background: #f55d2c;
+  text-align: center;
+}

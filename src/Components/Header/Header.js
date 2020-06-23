@@ -1,13 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Navbar } from "react-bootstrap";
 
+import "./header.css";
+import logo2 from "../../Assets/dark-logo.svg";
 import logo from "../../Assets/logo.svg";
 import Location from "../DropDown/Location";
 import Menu from "../DropDown/Menu";
 
 function Header(props) {
+  const backUrl = props.location.pathname;
+  const isAuth = props.config.isAuth;
+  const loginButtons = (
+    <>
+      <li>
+        <Link
+          className="my-login-btn"
+          to={{ pathname: "/login", state: { backUrl } }}
+        >
+          Login
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="my-login-btn"
+          to={{ pathname: "/register", state: { backUrl } }}
+        >
+          Register
+        </Link>
+      </li>
+    </>
+  );
   const contactInfo = "1800-000-000";
   const cartCount = props.cartCount;
   return (
@@ -17,11 +41,7 @@ function Header(props) {
           <div className="main_logo" id="logo">
             <Link to="/">
               <img src={logo} alt="Right Delivers" />
-              <img
-                className="logo-inverse"
-                src="../Assets/images/dark-logo.svg"
-                alt=""
-              />
+              <img className="logo-inverse" src={logo2} alt="" />
             </Link>
           </div>
           <div className="select_location">
@@ -41,14 +61,25 @@ function Header(props) {
               </li>
 
               <li>
-                <Link to="/dashboard/cart" className="option_links">
+                <Link
+                  to={
+                    isAuth
+                      ? { pathname: "/dashboard/cart" }
+                      : { pathname: "/login", state: { backUrl } }
+                  }
+                  className="option_links"
+                >
                   <i className="uil uil-shopping-cart-alt icon_wishlist"></i>
                   <span className="noti_count1">{cartCount}</span>
                 </Link>
               </li>
-              <li className="ui dropdown">
-                <Menu />
-              </li>
+              {isAuth ? (
+                <li className="ui dropdown">
+                  <Menu />
+                </li>
+              ) : (
+                loginButtons
+              )}
             </ul>
           </div>
         </div>
@@ -58,7 +89,8 @@ function Header(props) {
 }
 const mapStateToProps = (state) => {
   return {
+    config: state.config,
     cartCount: state.cart.cartItems.length,
   };
 };
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));

@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import * as actionCreators from "../Store/actions/index";
 
-export default connect()(function SignIn(props) {
+function SignIn(props) {
   const history = useHistory();
   const emptyLoginData = {
     phone: "",
@@ -21,9 +22,11 @@ export default connect()(function SignIn(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log(loginData);
-      history.push("/home");
       setLoginData(emptyLoginData);
+      props.authenticate();
+      history.push(
+        props.location.state.backUrl ? props.location.state.backUrl : "/"
+      );
     }
   };
 
@@ -144,4 +147,12 @@ export default connect()(function SignIn(props) {
       </div>
     </div>
   );
-});
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authenticate: () => dispatch(actionCreators.authenticate()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(SignIn));

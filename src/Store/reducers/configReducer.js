@@ -3,6 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const configReducer = function (
   state = {
     curLocation: "",
+    isAuth: false,
     loadedData: {},
     curBranch: { services: [] },
     notification: "",
@@ -90,6 +91,16 @@ const configReducer = function (
       return {
         ...state,
         loadedData: action.payload,
+      };
+    case actionTypes.AUTHENTICATE:
+      return {
+        ...state,
+        isAuth: true,
+      };
+    case actionTypes.LOGOUT:
+      return {
+        ...state,
+        isAuth: false,
       };
     case actionTypes.SET_LOCATION:
       return {

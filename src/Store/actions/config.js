@@ -15,6 +15,18 @@ export const setNotification = (payload) => {
   };
 };
 
+export const authenticate = () => {
+  return {
+    type: actionTypes.AUTHENTICATE,
+  };
+};
+
+export const logout = () => {
+  return {
+    type: actionTypes.LOGOUT,
+  };
+};
+
 export function loadData() {
   return function (dispatch) {
     return axios.get("http://localhost:8000/").then(({ data }) => {

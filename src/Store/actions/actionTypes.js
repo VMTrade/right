@@ -1,6 +1,8 @@
 //config
 export const SET_LOCATION = "SET_LOCATION";
 export const SET_NOTIFICATION = "SET_NOTIFICATION";
+export const AUTHENTICATE = "AUTHENTICATE";
+export const LOGOUT = "LOGOUT";
 
 //cart
 export const SET_QUANTITY = "SET_QUANTITY";

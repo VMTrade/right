@@ -1,10 +1,17 @@
 import React from "react";
 import "./Menu.css";
 import Avatar from "./img-5.jpg";
+import { connect } from "react-redux";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-export default function Menu() {
+import * as actionCreators from "../../Store/actions/index";
+
+function Menu(props) {
   const currentUser = "Jay";
+  const handleLogout = () => {
+    props.logout();
+    console.log("logged out");
+  };
   const data = [
     {
       item: "Dashboard",
@@ -26,11 +33,6 @@ export default function Menu() {
       icon: "uil uil-info-circle icon__1",
       link: "/dashboard/faq",
     },
-    {
-      item: "Logout",
-      icon: "uil uil-lock-alt icon__1",
-      link: "/login",
-    },
   ];
   return (
     <div>
@@ -43,8 +45,22 @@ export default function Menu() {
               <Link to={dataItem.link}>{dataItem.item}</Link>
             </Dropdown.Item>
           ))}
+          <Dropdown.Item className="channel_item1">
+            <i className="uil uil-lock-alt icon__1"></i>
+            <Link to="/" onClick={handleLogout}>
+              Logout
+            </Link>
+          </Dropdown.Item>
         </DropdownButton>
       </a>
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(actionCreators.logout()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Menu);

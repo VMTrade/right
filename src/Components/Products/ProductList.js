@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-
 import Product from "./Product";
 import Header from "../Header/Header";
 
 function ProductList(props) {
-  const items = props.product.items;
-  const loadMore = () => {};
+  const step = 8;
+  const [index, setIndex] = useState(0);
+  const [items, setItems] = useState([]);
+  const [loadMore, setLoadMore] = useState(false);
+  const getData = () => {
+    setIndex(index + step);
+    const newProds = props.product.items.slice(index, index + step);
+    setItems((prevState) => prevState.concat(newProds));
+  };
+  useEffect(() => {
+    getData();
+    setLoadMore(false);
+  }, [loadMore]);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    )
+      return;
+    getData();
+  };
   return (
     <>
       <Header />
@@ -26,16 +49,12 @@ function ProductList(props) {
                   {items.map((item) => (
                     <Product data={item} />
                   ))}
-
-                  <div className="col-md-12">
-                    <div className="more-product-btn">
-                      <button
-                        className="show-more-btn hover-btn"
-                        onClick={loadMore}
-                      >
-                        Show More
-                      </button>
-                    </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="more-product-btn">
+                    <button class="show-more-btn hover-btn" onClick={getData}>
+                      Show More
+                    </button>
                   </div>
                 </div>
               </div>
